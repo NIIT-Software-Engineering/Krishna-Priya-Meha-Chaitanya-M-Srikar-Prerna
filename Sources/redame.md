@@ -1,1 +1,1 @@
-+ All soucrces of the project 
++ All sources of the project 
