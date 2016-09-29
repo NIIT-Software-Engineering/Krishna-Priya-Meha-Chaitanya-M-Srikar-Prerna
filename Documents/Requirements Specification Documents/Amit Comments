@@ -1,0 +1,10 @@
+SRS:
+User classes must be explained differently specially describing the types of user and the required competencies in them.
+Use case diagram must come under "Feature' section
+It must have two subsection-functional and non functional -Functional requirement sub section of feature section must provide the tabular description of the requirements 
+and the use case diagram also.
+Assumptions and dependencies must be given in terms of the external software/system you uase or assume about.
+user documwentation must describe the way you want to provide the operating hellp to the user.
+
+Update feasibility reports as per the commemnts given.
+Update Dewvelopment tracibility matrix as per the comments
