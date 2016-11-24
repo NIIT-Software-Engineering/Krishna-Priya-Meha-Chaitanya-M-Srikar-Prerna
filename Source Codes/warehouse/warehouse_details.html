@@ -4,17 +4,19 @@
   <title>Warehouse Management</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <script src="js/jquery-3.1.0.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <script src="../js/jquery-3.1.0.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
   <script>
    $(document).ready(function(){
       var user_id = "temp";
+      var product = "temp";
+      product = window.localStorage.getItem('selected_product');
       user_id = window.localStorage.getItem('user_id');
-      var dataString = 'user_id='+ user_id;
+      var dataString = 'user_id='+ user_id + '&product='+ product;
       $.ajax({
                       type: "POST",
-                      url: "http://172.19.20.172/client_sg/getUserDetails.php",
+                      url: "http://172.19.20.172/client_sg/getWarehouseDetails.php",
                       data: dataString,
                       cache: false,
                       success: function(result){
@@ -24,18 +26,17 @@
                         }
                         else
                         {
-                          var user = JSON.parse(result);
+                          var warehouse = JSON.parse(result);
                           //alert(z.user_name);
                           //console.log(result)
-                          var details = '<div id="user_values" class="jumbotron">'
-                                  +'<h2>Profile</h2>'
-                                  +'<p> Name : '+ user.user_name +'</p>'
-                                  +'<p> Role : '+ user.role_id +'</p>'
-                                  +'<p> Working Zone : '+ user.working_zone+'</p>'
-                                  +'<p> Phone Number : '+user.contact+'</p>'
-                                  +'<p> Address : '+ user.address+ '</p>'
-                                  +'</div>';
-                          $('#user_details').append(details);
+                          var details = '<div id="warehouse_values" class="jumbotron">'
+                                        +'<h2>Warehouse Details</h2> <br> <br>'
+                                        +'<p> Warehouse ID : '+ warehouse.warehouse_id +'</p>'
+                                        +'<p> Location : '+ warehouse.location +'</p>'
+                                        +'<p> Address : '+ warehouse.address +'</p>'
+                                        +'<a href="warehouse_mg.html" class="btn btn-primary btn-lg">Go Back to Reports</a> <br> <br>'
+                                        +'</div>';
+                          $('#warehouse_details').append(details);
                         }
                                                 },
                         error: function(data){
@@ -49,7 +50,7 @@
   </script>
 </head>
 
-<body background = "img/check1.jpg">
+<body background = "../img/check1.jpg">
 <br>
 <div class="container">
   <div class="row">
@@ -80,31 +81,17 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li class="active" ><a href="profile.html">Profile</a></li>
-            <li><a href="erp_products.html">Products</a></li>
-            <!--<li><a href="#">Purchase Orders</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li class="active" ><a href="erp_products.html">Products</a></li>
+            <!-- <li><a href="#">Purchase Orders</a></li>
             <li><a href="#">Sales Orders</a></li>
             <li><a href="#">Warehouse Management</a></li> -->
           </ul>
         </div>
       </div>
     </nav>
-    <div class="container" id="user_details">
-
-      <!-- Main component for a primary marketing message or call to action -->
-    <!--   <div id="user_values" class="jumbotron">
-        <h2>Profile</h2>
-        <p> Name : User1</p>
-        <p> Role : Manager</p>
-        <p> Working Zone : Hyderabad</p>
-        <p> Phone Number : 9123456789</p>
-        <p> Address : Hyderabad</p>
-      </div>
- -->
-    </div> <!-- /container -->
-
-
+    
+    <div class="container" id="warehouse_details">
 
 </body>
 </html>
-
